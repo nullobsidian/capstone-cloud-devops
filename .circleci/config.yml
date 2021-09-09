@@ -8,21 +8,19 @@ jobs:
       - checkout
       - run: |
           make all
-
+  
   build:
     docker:
       - image: cimg/base:2021.04
-        auth:
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
     steps:
       - checkout
       - setup_remote_docker
       - run: |
           DATE=$(date +%Y%d%m)
-          docker build . -t $DOCKER_USERNAME/capstone-devops:$DATE-CIRCLE_BUILD_NUM
-          docker push $DOCKER_USERNAME/capstone-devops:$DATE-CIRCLE_BUILD_NUM
-
+          docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+          docker build . -t $DOCKER_USERNAME/capstone-devops:$DATE-$CIRCLE_BUILD_NUM
+          docker push $DOCKER_USERNAME/capstone-devops:$DATE-$CIRCLE_BUILD_NUM
+  
   deploy:
     docker:
       - image: cimg/base:2021.04
