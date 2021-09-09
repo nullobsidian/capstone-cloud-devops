@@ -1,5 +1,7 @@
 # capstone-cloud-devops
 
+[![CircleCI](https://circleci.com/gh/nullobsidian/capstone-cloud-devops/tree/main.svg?style=svg)](https://circleci.com/gh/nullobsidian/capstone-cloud-devops/tree/main)
+
 ## Project Overview
 
 This project is to deploy and containerize a simple `To Do` web app using with JavaScript with CircleCI. 
