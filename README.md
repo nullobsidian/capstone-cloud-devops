@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-This project is to deploy and containerize a simple `To Do` web app using with JavaScript with CircleCI. 
+A simple `To Do` web app - same as list of errands and other tasks. Using Javascript and simple HTML/CSS web app serving by `nginx` container and deploy with CircleCI on Kubernetes.
 
 **Setup the Environment**
 - Setup `make setup` and configure environment
