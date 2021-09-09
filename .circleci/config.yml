@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   lint:
     docker:
-      - image: alpine:3.14.2
+      - image: cimg/base:2021.04
     steps:
       - checkout
       - run: 
@@ -11,7 +11,7 @@ jobs:
           command: make all
   build:
     docker:
-      - image: alpine:3.14.2
+      - image: cimg/base:2021.04
     steps:
       - checkout
       - setup_remote_docker
@@ -24,7 +24,7 @@ jobs:
             docker push $DOCKER_USERNAME/capstone-devops:$TAG
   deploy:
     docker:
-      - image: alpine:3.14.2
+      - image: cimg/base:2021.04
     steps:
       - checkout
       - run: echo "this is the build job"
