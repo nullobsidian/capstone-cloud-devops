@@ -15,5 +15,5 @@ This project is to deploy and containerize a simple `To Do` web app using with J
 **Kubernetes**
 - Build and upload to Docker
 - Deploy a Kubernetes cluster on AWS EC2
-- Follow Github project and Setup Required Variables on CrircleCI
+- Follow Github project and Setup Required Variables on CircleCI
 - Run CircleCI pipeline to lint and deploy app
