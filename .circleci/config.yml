@@ -17,6 +17,7 @@ jobs:
           password: $DOCKER_PASSWORD
     steps:
       - checkout
+      - setup_remote_docker
       - run: |
           DATE=$(date +%Y%d%m)
           docker build . -t $DOCKER_USERNAME/capstone-devops:$DATE-CIRCLE_BUILD_NUM
