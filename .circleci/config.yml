@@ -3,12 +3,12 @@ version: 2.1
 jobs:
   lint:
     docker:
-      - image: cimg/base:2021.04
+      - image: cimg/node:16.8.0
     steps:
       - checkout
       - run: 
           name: Install dependencies
-          command: make setup && make install
+          command: make install
       - run: 
           name: Lint app files 
           command: make lint

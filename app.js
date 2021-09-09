@@ -1,4 +1,3 @@
-"use strict";
 
 const taskInput = document.querySelector('input.task');
 const lists = document.querySelector('.lists');
@@ -15,11 +14,11 @@ const taskItems = tasks.children;
 
 if ( favsItems.length === 0 ) {
   favsSection.style.display = 'none';
-};
+}
 
 if ( taskItems.length === 0 ) {
   tasksSection.style.display = "none";
-};
+}
 
 taskInput.addEventListener('keyup', (e) => {
   if (e.keyCode === 13) {
@@ -65,7 +64,7 @@ lists.addEventListener('click', (event) => {
 
       if ( taskItems.length === 0 ) {
         tasksSection.style.display = "none";
-      };
+      }
 
     } else if (tag === 'path') {
       if (basevalue  === 'delete' || basevalue  === 'can' || basevalue  === 'cap' || basevalue  === 'bin') {
@@ -82,7 +81,7 @@ lists.addEventListener('click', (event) => {
 
       if ( taskItems.length === 0 ) {
         tasksSection.style.display = "none";
-      };
+      }
     }
 
     // Checking if buttons inside favs section is clicked
@@ -102,7 +101,7 @@ lists.addEventListener('click', (event) => {
 
       if ( favsItems.length === 0 ) {
         favsSection.style.display = 'none';
-      };
+      }
 
     } else if (tag === 'path') {
       if (basevalue  === 'delete' || basevalue  === 'can' || basevalue  === 'cap' || basevalue  === 'bin') {
@@ -119,7 +118,7 @@ lists.addEventListener('click', (event) => {
 
       if ( favsItems.length === 0 ) {
         favsSection.style.display = 'none';
-      };
+      }
     }
   }
 });
