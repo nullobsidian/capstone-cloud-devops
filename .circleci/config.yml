@@ -3,33 +3,34 @@ version: 2.1
 jobs:
   lint:
     docker:
-      - image: cimg/base:2021.04
+      - image: alpine:3.14.2
     steps:
       - checkout
-      - run: |
-          make all
-  
+      - run: 
+          name: Install dependencies and Lint app files 
+          command: make all
   build:
     docker:
-      - image: cimg/base:2021.04
+      - image: alpine:3.14.2
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          DATE=$(date +%Y%d%m)
-          docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
-          docker build . -t $DOCKER_USERNAME/capstone-devops:$DATE-$CIRCLE_BUILD_NUM
-          docker push $DOCKER_USERNAME/capstone-devops:$DATE-$CIRCLE_BUILD_NUM
-  
+      - run:
+          name: Build and deploy to DockerHub
+          command: |
+            TAG=0.1.$CIRCLE_BUILD_NUM
+            docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+            docker build . -t $DOCKER_USERNAME/capstone-devops:$TAG
+            docker push $DOCKER_USERNAME/capstone-devops:$TAG
   deploy:
     docker:
-      - image: cimg/base:2021.04
+      - image: alpine:3.14.2
     steps:
       - checkout
       - run: echo "this is the build job"
 
 workflows:
-  build_and_test:
+  rolling_deployment:
     jobs:
       - lint
       - build:
