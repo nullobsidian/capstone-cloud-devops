@@ -9,7 +9,7 @@ This project is to deploy and containerize a simple `To Do` web app using with J
 **Setup the Environment**
 - Setup `make setup` and configure environment
 - Run `make install` to install dependencies
-- Test `make lint` to lint Dockerfile, Javascript, HTML and CSS
+- Lint `make lint` app files and CircleCI config
 - Cleanup `make cleanup` environment
 
 **Kubernetes**
