@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/nullobsidian/capstone-cloud-devops/tree/main.svg?style=svg)](https://circleci.com/gh/nullobsidian/capstone-cloud-devops/tree/main)
 
-## Project Overview
+### Project Overview
 
 A simple `To Do` web app - same as list of errands and other tasks. Using Javascript and simple HTML/CSS web app serving by `nginx` container and deploy with CircleCI on Kubernetes.
 
