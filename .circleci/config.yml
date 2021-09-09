@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   lint:
     docker:
-      - image: alpine:latest
+      - image: cimg/base:2021.04
     steps:
       - checkout
       - run: echo "this is the test job"
@@ -18,7 +18,7 @@ jobs:
       - run: echo "this is the build job"
   deploy:
     docker:
-      - image: alpine:latest
+      - image: cimg/base:2021.04
     steps:
       - checkout
       - run: echo "this is the build job"
@@ -27,5 +27,10 @@ workflows:
   build_and_test:
     jobs:
       - lint
-      - build
-      - deploy
+      - build:
+          requires: 
+            - lint
+      - deploy:
+          requires:
+            - lint
+            - build
