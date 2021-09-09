@@ -1,22 +1,31 @@
 version: 2.1
 
 jobs:
-  build:
+  lint:
     docker:
-      - image: circleci/<language>:<version TAG>
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
-    steps:
-      - checkout
-      - run: echo "this is the build job"
-  test:
+      - image: alpine:latest
     steps:
       - checkout
       - run: echo "this is the test job"
+  build:
+    docker:
+      - image: cimg/base:2021.04
+        auth:
+          username: $DOCKER_USERNAME
+          password: $DOCKER_PASSWORD
+    steps:
+      - checkout
+      - run: echo "this is the build job"
+  deploy:
+    docker:
+      - image: alpine:latest
+    steps:
+      - checkout
+      - run: echo "this is the build job"
 
 workflows:
   build_and_test:
     jobs:
+      - lint
       - build
-      - test
+      - deploy
