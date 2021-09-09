@@ -6,7 +6,9 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - checkout
-      - run: echo "this is the test job"
+      - run: |
+          make all
+
   build:
     docker:
       - image: cimg/base:2021.04
@@ -15,7 +17,11 @@ jobs:
           password: $DOCKER_PASSWORD
     steps:
       - checkout
-      - run: echo "this is the build job"
+      - run: |
+          DATE=$(date +%Y%d%m)
+          docker build . -t $DOCKER_USERNAME/capstone-devops:$DATE-CIRCLE_BUILD_NUM
+          docker push $DOCKER_USERNAME/capstone-devops:$DATE-CIRCLE_BUILD_NUM
+
   deploy:
     docker:
       - image: cimg/base:2021.04
@@ -32,5 +38,4 @@ workflows:
             - lint
       - deploy:
           requires:
-            - lint
             - build

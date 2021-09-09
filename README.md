@@ -10,7 +10,6 @@ A simple `To Do` web app - same as list of errands and other tasks. Using Javasc
 - Setup `make setup` and configure environment
 - Run `make install` to install dependencies
 - Lint `make lint` app files
-- Cleanup `make cleanup` environment
 
 **Kubernetes**
 - Build and upload to Docker

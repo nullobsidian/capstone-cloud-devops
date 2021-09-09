@@ -4,6 +4,4 @@ install:
 
 lint:
 
-cleanup:
-
-all:
+all: setup install lint
