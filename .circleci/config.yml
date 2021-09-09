@@ -6,9 +6,12 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - checkout
+      - run: Install dependencies
+          name: 
+          command: make setup && make install
       - run: 
-          name: Install dependencies and Lint app files 
-          command: make all
+          name: Lint app files 
+          command: make lint
   build:
     docker:
       - image: cimg/base:2021.04
