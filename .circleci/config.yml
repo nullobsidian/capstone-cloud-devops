@@ -42,7 +42,7 @@ jobs:
           command: |
             TAG=$VERSION_TAG-$CIRCLE_BUILD_NUM
             if [ ! $(kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG) ];then
-              kubectl set image deployment to-do-app nginx=$DOCKER_USERNAME/capstone-devops:$TAG
+              kubectl set image deployment to-do-app capstone-devops=$DOCKER_USERNAME/capstone-devops:$TAG
             fi
 
 workflows:
