@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build and deploy to DockerHub
           command: |
-            TAG=$VERSION_TAG-$CIRCLE_BUILD_NUM
+            TAG=$VERSION_TAG-$CIRCLE_WORKFLOW_ID
             docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
             docker build . -t $DOCKER_USERNAME/capstone-devops:$TAG
             docker push $DOCKER_USERNAME/capstone-devops:$TAG
@@ -40,7 +40,7 @@ jobs:
       - run:
           name: Apply rolling-deployment to cluster
           command: |
-            TAG=$VERSION_TAG-$CIRCLE_BUILD_NUM
+            TAG=$VERSION_TAG-CIRCLE_WORKFLOW_ID
             if [[ ! $(kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG --port=80 --replicas=2) ]];then
               kubectl set image deployment to-do-app capstone-devops=$DOCKER_USERNAME/capstone-devops:$TAG
             fi
