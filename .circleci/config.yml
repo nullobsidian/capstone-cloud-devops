@@ -41,7 +41,7 @@ jobs:
           name: Apply rolling-deployment to cluster
           command: |
             TAG=$VERSION_TAG-$CIRCLE_WORKFLOW_ID
-            if [[ ! $(kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG --port=80 --replicas=2) ]];then
+            if [[ ! $(kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG --port=80 --replicas=2  > /dev/null) ]];then
               kubectl set image deployment to-do-app capstone-devops=$DOCKER_USERNAME/capstone-devops:$TAG
             fi
 
