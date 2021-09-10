@@ -33,8 +33,7 @@ jobs:
       - run: |
           curl -LO https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl
           sudo chmod +x kubectl && sudo mv kubectl /usr/local/bin
-          mkdir ~/.kube
-          echo $KUBECTL_CONFIG | base64 -di; echo
+          mkdir ~/.kube && echo $KUBECTL_CONFIG | base64 -di > ~/.kube/config
           kubectl get nodes
 
 workflows:
