@@ -12,7 +12,7 @@ jobs:
       - run: 
           name: Lint app files 
           command: make lint
-  build:
+  build_upload:
     docker:
       - image: cimg/base:2021.04
     steps:
@@ -49,7 +49,7 @@ workflows:
   rolling_deployment:
     jobs:
       - lint
-      - build:
+      - build_upload:
           requires: 
             - lint
       - deploy:
