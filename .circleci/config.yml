@@ -41,7 +41,9 @@ jobs:
           name: Apply rolling-deployment to cluster
           command: |
             TAG=$VERSION_TAG-$CIRCLE_BUILD_NUM
-            kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG
+            if [ ! kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG ]; then
+              kubectl set image deployment to-do-app nginx=$DOCKER_USERNAME/capstone-devops:$TAG
+            fi
 
 workflows:
   rolling_deployment:
