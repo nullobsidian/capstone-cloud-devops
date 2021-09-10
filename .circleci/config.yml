@@ -54,4 +54,4 @@ workflows:
             - lint
       - deploy:
           requires:
-            - build
+            - build_upload
