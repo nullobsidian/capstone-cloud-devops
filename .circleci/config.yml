@@ -30,16 +30,18 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - checkout
-      - name: Install Kubernetes & Setup kubectl 
-        run: |
-          TAG=$VERSION_TAG-$CIRCLE_BUILD_NUM
-          curl -sLO https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl
-          sudo chmod +x kubectl && sudo mv kubectl /usr/local/bin
-          mkdir ~/.kube && echo $KUBECTL_CONFIG | base64 -di > ~/.kube/config
-          kubectl get nodes
-      - name: Apply rolling-deployment to cluster
-        run: |
-          kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG
+      - run:
+          name: Install Kubernetes & Setup kubectl 
+          command: |
+            TAG=$VERSION_TAG-$CIRCLE_BUILD_NUM
+            curl -sLO https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl
+            sudo chmod +x kubectl && sudo mv kubectl /usr/local/bin
+            mkdir ~/.kube && echo $KUBECTL_CONFIG | base64 -di > ~/.kube/config
+            kubectl get nodes
+      - run:
+          name: Apply rolling-deployment to cluster
+          command: |
+            kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG
 
 workflows:
   rolling_deployment:
