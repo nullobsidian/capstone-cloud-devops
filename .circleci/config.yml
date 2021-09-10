@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: 
           name: Install dependencies
-          command: make install
+          command: sudo make install
       - run: 
           name: Lint app files 
           command: make lint
@@ -21,7 +21,7 @@ jobs:
       - run:
           name: Build and deploy to DockerHub
           command: |
-            TAG=0.1.$CIRCLE_BUILD_NUM
+            TAG=$VERSION_TAG-$CIRCLE_BUILD_NUM
             docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
             docker build . -t $DOCKER_USERNAME/capstone-devops:$TAG
             docker push $DOCKER_USERNAME/capstone-devops:$TAG
@@ -30,7 +30,12 @@ jobs:
       - image: cimg/base:2021.04
     steps:
       - checkout
-      - run: echo "this is the build job"
+      - run: |
+          curl -LO https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl
+          chmod +x kubectl && mv kubectl /usr/local/bin
+          mkdir ~/.kube
+          echo $KUBECTL_CONFIG > config && base64 -d config > ~/.kube/config
+          kubectl get nodes
 
 workflows:
   rolling_deployment:

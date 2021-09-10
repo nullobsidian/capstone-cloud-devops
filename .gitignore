@@ -93,3 +93,8 @@ Thumbs.db
 # package.json
 package.json
 package-lock.json
+
+# ansible venv
+.ansible
+.masters
+.workers
