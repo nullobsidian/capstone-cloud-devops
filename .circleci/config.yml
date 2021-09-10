@@ -43,6 +43,7 @@ jobs:
             TAG=$VERSION_TAG-$CIRCLE_WORKFLOW_ID
             if [[ ! $(kubectl create deployment to-do-app --image=$DOCKER_USERNAME/capstone-devops:$TAG --port=80 --replicas=2 2>&1 >/dev/null &) ]];then
               kubectl set image deployment to-do-app capstone-devops=$DOCKER_USERNAME/capstone-devops:$TAG
+              kubectl rollout status deployment/to-do-app
             fi
 
 workflows:
