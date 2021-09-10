@@ -32,7 +32,7 @@ jobs:
       - checkout
       - run: |
           curl -LO https://dl.k8s.io/release/v1.22.0/bin/linux/amd64/kubectl
-          chmod +x kubectl && mv kubectl /usr/local/bin
+          sudo chmod +x kubectl && sudo mv kubectl /usr/local/bin
           mkdir ~/.kube
           echo $KUBECTL_CONFIG > config && base64 -d config > ~/.kube/config
           kubectl get nodes
